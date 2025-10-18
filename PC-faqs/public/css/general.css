@@ -1,0 +1,226 @@
+/* AquÃ­ escribirÃ© mis estilos
+-------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+/* estilos.css */
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 0 20px;
+    font-size:1.125rem;
+}
+
+header {
+
+    height:20vh;
+    position:relative
+
+}
+h1, h2, h3, h4, h5,h6{
+text-transform: uppercase;
+    font-weight: 100;
+    letter-spacing: 2px;
+    margin: 1.5em 0;
+
+}
+
+header h1 {
+    font-size: 2.5em;
+  text-align: center;
+
+
+}
+h2{
+    font-size: 1.8rem;
+}
+
+header figure {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+  
+    background-size: cover;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+main {
+    margin:40px auto;
+    width:calc(100% - 18px);
+    text-align: center;
+   
+}
+main main{
+    width:100%
+}
+
+figure img{
+    max-width:100%;
+  
+}
+
+
+footer {
+
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+}
+/* Estilo general del formulario */
+form {
+ 
+padding:1rem;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Estilos generales para etiquetas de texto */
+label {
+    display: block;
+    margin-bottom: 9px;
+    color: #333;
+}
+
+/* Estilos para los inputs de texto y correo */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 9px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+/* Estilo para el input tipo nÃºmero */
+input[type="number"] {
+    width: 100%;
+    padding: 9px;
+    margin-bottom: 19px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+    box-sizing: border-box;
+}
+label:has(input[type="file"]) {
+ width: 50%;position: relative;
+    max-width: 300px;
+    padding: 0.75rem;
+    background-color: #f40;;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    margin:1rem auto;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  overflow: hidden;
+}
+
+label input[type="file"] {
+ 
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  background-color: aqua;
+}
+#nombre-archivo {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #333;
+ 
+}
+/* Estilo para select */
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+/* Estilos para los botones */
+button,
+input[type="submit"] {
+    width: 50%;
+    max-width: 300px;
+    padding: 0.75rem;
+    background-color: #f40;;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    margin:1rem auto;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #f10;
+}
+
+/* Estilos para los checkbox y radio */
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Agrupar los checkbox y radio en filas */
+.checkbox-group,
+.radio-group {
+    margin-bottom: 15px;
+}
+
+/* Estilo para los mensajes de error o advertencia */
+.mensaje-error:before{
+    content:"\274c";
+}
+.mensaje-error {
+    color: #e34234;
+    font-size:1.5rem;
+
+}
+.mensaje-exito:before{
+    content:"\2714";
+}
+.mensaje-exito {
+    color: #6ddb0d;
+    font-size:1.5rem;
+
+}
+
+/* Estilo para textarea */
+textarea {
+    height: 100px;
+}
+
+/* Estilo para fieldset */
+fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* Estilo para legend */
+legend {
+    font-weight: bold;
+    color: #333;
+}

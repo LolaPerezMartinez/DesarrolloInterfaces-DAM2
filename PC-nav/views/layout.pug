@@ -3,12 +3,26 @@ html
     head 
         meta(charset="UTF-8")
         title Navegación usando Express y Pug #{pagina}
+        link(rel="stylesheet", href="/CSS/reset.css")
+        link(rel="stylesheet", href="/CSS/general.css")
+
 
     body 
         nav 
+            //-En pug los atributos se ponen entre paréntesis
+            //-Podemos no poner type="button" pero lo ideal es ponerlo
+            button(type="button" class="icono" data-tipo="tooltip" data-titulo="Guardar cambios") 💾
             ul 
-                li: a(href="/", class = pagina === "Inicio" ? "actual" : "") Inicio
-                li: a(href="/productos", class = pagina === "Productos" ? "actual" : "") Productos
+                li: a(href="/", class=pagina === "Inicio" ? "actual" : "") Inicio
+                li: a(href="/productos", class=pagina === "Productos" ? "actual" : "") Productos
+                li: a(href="/contacto", class=pagina === "Contacto" ? "actual" : "") Contacto
 
 
         block content
+        script(src="/js/boton.js")
+        script(src="/js/ventanaModal.js")
+        script(src="/js/formulario.js")
+        script(src="/js/codex.js")
+        script(src ="/js/tooltips.js")
+        
+        
