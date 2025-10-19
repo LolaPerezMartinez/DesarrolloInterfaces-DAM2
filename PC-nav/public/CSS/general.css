@@ -167,7 +167,7 @@ input[type="submit"] {
     width: 50%;
     max-width: 300px;
     padding: 0.75rem;
-    background-color: #f40;;
+    background-color: #f40;
     color: #fff;
     border: none;
     border-radius: 9px;
@@ -178,8 +178,11 @@ input[type="submit"] {
 
 button:hover,
 input[type="submit"]:hover {
-    background-color: #f10;
+    /*background-color: #f10;*/
+    cursor: pointer;
 }
+
+
 
 /* Estilos para los checkbox y radio */
 input[type="checkbox"],

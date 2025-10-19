@@ -20,7 +20,7 @@ const listaProductos = document.getElementById("productos");
 
 productos.map(pro=>{
  console.log(pro.nombre)
- const li = document.getElementById
+ //const li = document.getElementById;
  listaProductos.innerHTML += `<li>
  <div class="ficha" data-descripcion="${pro.descripcion}">
  <figure>
@@ -41,7 +41,10 @@ mas.setAttribute('id' , 'mas');
 const figura = document.createElement('figure');
 
 const imagen = document.createElement('img');
+//this.querySelector('img') → busca la imagen dentro del div .ficha que fue clicado.
+//.src → toma la ruta de la imagen original.
 imagen.setAttribute('src', this.querySelector('img').src)
+
 const span = document.createElement('span');
 const figcaption = document.createElement('figcaption')
 const h1 = document.createElement('h1')
@@ -55,9 +58,7 @@ document.body.append(mas);
 const fichas = document.getElementsByClassName('ficha');
 
 for(let ficha of fichas){
-    ficha.addEventListener('click', () => {
-        alert('holaaa');
-    });
+    ficha.addEventListener('click', ampliarInfo);
 
 }
 

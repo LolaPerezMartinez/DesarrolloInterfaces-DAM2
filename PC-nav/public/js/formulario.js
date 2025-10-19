@@ -13,6 +13,8 @@ class Formulario{
     }
     
 
+    //Aqui no es neceario poner {nombre, tipo = "text", etiqueta} ={} porque el objeto
+    //se espera siempre y daría error si se llama a agregar campos sin pasar ningun objeto
     agregarCampos({nombre, tipo = "text", etiqueta}){
         //Haciendo {nombre, tipo, etiqueta} estamos creando un objeto y esas son sus propiedades
         this.campos.push({nombre, tipo, etiqueta});

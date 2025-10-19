@@ -29,6 +29,7 @@ class Acordeon{
             pregunta.innerText = faq.pregunta;
             respuesta.innerText = faq.respuesta;
 
+            //Aqui funciona this.contenedor porque querySelector espera un String
             const contenedor = document.querySelector(this.contenedor);
             contenedor.append(pregunta, respuesta);
         });

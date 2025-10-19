@@ -1,0 +1,24 @@
+html 
+    head
+        title #{pagina}
+
+    body 
+        h1 Bienvenidos a la pagina de #{pagina}
+        nav 
+            ul 
+                li: a(href="/", class=pagina === "Inicio" ? "actual" : "") Inicio
+                li: a(href="/boton-personalizado", class=pagina === "Boton" ? "actual": "") Boton Personalizado 
+                li: a(href="/ventana-emergente", class=pagina === "Ventana" ? "actual": "") Ventana Emergente
+                li: a(href="/tooltip", class=pagina === "tooltip" ? "actual": "") Tooltip 
+
+            div(id="contenedor")
+
+            div(id="iconos")
+                i(class="icono", data-titulo="Guardar") 💾
+                i(class="icono", data-titulo="Eliminar") ❌
+
+
+
+block content 
+    script(src="/js/componentes.js")
+    

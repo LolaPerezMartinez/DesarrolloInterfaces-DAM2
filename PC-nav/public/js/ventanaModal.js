@@ -44,11 +44,13 @@ class VentanaModal{
         const ventana = document.createElement('div');
         ventana.innerText = this.texto;
         document.body.append(ventana);
+        //con esta clase podemos crear los estilos de la ventana modal en crearEstilos()
         ventana.classList.add('estilos');
 
         const cruz = document.createElement('button');
         cruz.innerText = `X`;
         ventana.append(cruz);
+        //añadimos a la etiqueta button llamada cruz la clase boton
         cruz.classList.add('boton');
 
         ventana.style.background = this.bgcolor;
