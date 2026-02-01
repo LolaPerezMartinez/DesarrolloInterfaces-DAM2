@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README - Video Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        #parrafo-titulo{
+            color:white;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.4rem;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        ul {
+            margin: 15px 0 15px 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+            border-left: 4px solid #667eea;
+        }
+
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .inline-code {
+            background: #f4f4f4;
+            color: #667eea;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .folder-structure {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #495057;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .badge.purple {
+            background: #764ba2;
+        }
+
+        .badge.green {
+            background: #10b981;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .success-box {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-card h4 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 25px;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .steps li {
+                padding-left: 45px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Video Player</h1>
+            <p id="parrafo-titulo">Reproductor de video personalizado en JavaScript</p>
+        </header>
+
+        <div class="content">
+            <div class="info-box">
+                <strong>Sobre este proyecto:</strong> Este reproductor de video te permite crear tu propia interfaz de reproducción con controles personalizados. Puedes implementarlo con <span class="inline-code">Pug + Express</span> o con <span class="inline-code">HTML puro</span>.
+            </div>
+
+            <h2>🌟 Características</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h4>🎮 Controles intuitivos</h4>
+                    <p>Botones de Play y Pause para controlar la reproducción fácilmente.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>⏱️ Seguimiento de tiempo</h4>
+                    <p>Visualiza el tiempo reproducido y el tiempo restante en tiempo real.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🎨 Personalizable</h4>
+                    <p>Diseño adaptable y fácil de modificar según tus necesidades.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📹 Múltiples videos</h4>
+                    <p>Añade tantos videos como quieras de forma dinámica.</p>
+                </div>
+            </div>
+
+            <h2>🚀 Opciones de Implementación</h2>
+
+            <h3><span class="badge">Opción 1</span> Con Pug y Express</h3>
+            
+            <h4>📦 Configuración inicial</h4>
+            <ol class="steps">
+                <li>Crea una carpeta para tu proyecto y abre la terminal en esa ubicación.</li>
+                <li>Inicializa el proyecto Node.js:
+                    <pre><code>npm init -y</code></pre>
+                </li>
+                <li>Instala las dependencias necesarias:
+                    <pre><code>npm install express pug</code></pre>
+                </li>
+                <li>Crea el archivo principal <span class="inline-code">app.js</span> o <span class="inline-code">index.js</span> en la raíz del proyecto.</li>
+                <li>En <span class="inline-code">package.json</span>, asegúrate de que la propiedad <strong>"main"</strong> apunte a tu archivo principal.</li>
+            </ol>
+
+            <h4>📁 Estructura de carpetas</h4>
+            <pre class="folder-structure">📂 mi-proyecto-video
+├── 📄 app.js
+├── 📄 package.json
+├── 📂 views
+│   └── 📄 index.pug
+└── 📂 public
+    ├── 📂 js
+    │   └── 📄 VideoPlayer.js
+    ├── 📂 css
+    │   └── 📄 estilos.css
+    └── 📂 images</pre>
+
+            <h4>🔗 Enlazar el script en Pug</h4>
+            <p>En tu archivo <span class="inline-code">.pug</span>, enlaza el archivo JavaScript:</p>
+            <pre><code>script(src="js/VideoPlayer.js")</code></pre>
+
+            <h3><span class="badge purple">Opción 2</span> Sin Framework (HTML + JS)</h3>
+            
+            <div class="success-box">
+                <strong>✅ Recomendado para:</strong> Proyectos simples, aprendizaje o si no necesitas un servidor.
+            </div>
+
+            <ol class="steps">
+                <li>Crea un archivo <span class="inline-code">index.html</span> básico.</li>
+                <li>Crea el archivo <span class="inline-code">VideoPlayer.js</span> con la clase del reproductor.</li>
+                <li>Enlaza el script en tu HTML:
+                    <pre><code>&lt;script src="VideoPlayer.js"&gt;&lt;/script&gt;</code></pre>
+                </li>
+                <li>Crea una instancia del reproductor:
+                    <pre><code>const v1 = new VideoPlayer({ titulo: 'Mi video' });</code></pre>
+                </li>
+                <li>Añade videos con la función <span class="inline-code">agregarVideo()</span>:
+                    <pre><code>v1.agregarVideo({ src: 'https://www.w3schools.com/html/mov_bbb.mp4' });</code></pre>
+                </li>
+            </ol>
+
+            <h4>📁 Estructura simplificada</h4>
+            <pre class="folder-structure">📂 mi-proyecto-video
+├── 📄 index.html
+├── 📄 VideoPlayer.js
+└── 📄 README.md</pre>
+
+            <h2>💻 Uso del Video Player</h2>
+
+            <h3>Crear una instancia</h3>
+            <p>Inicializa el reproductor con un título personalizado:</p>
+            <pre><code>const miReproductor = new VideoPlayer({ titulo: 'Mis Videos Favoritos' });</code></pre>
+
+            <h3>Agregar videos</h3>
+            <p>Añade uno o varios videos usando su URL:</p>
+            <pre><code>// Agregar un video
+miReproductor.agregarVideo({ 
+    src: 'https://www.w3schools.com/html/mov_bbb.mp4' 
+});
+
+// Agregar otro video
+miReproductor.agregarVideo({ 
+    src: 'https://ejemplo.com/video2.mp4' 
+});</code></pre>
+
+            <h3>Ejemplo completo</h3>
+            <pre><code>// 1. Crear el reproductor
+const v1 = new VideoPlayer({ titulo: 'Mi Colección' });
+
+// 2. Agregar videos
+v1.agregarVideo({ src: 'https://www.w3schools.com/html/mov_bbb.mp4' });
+v1.agregarVideo({ src: 'https://ejemplo.com/video2.mp4' });
+
+// 3. El reproductor se renderiza automáticamente en el body</code></pre>
+
+            <h2>🎮 Controles Disponibles</h2>
+            
+            <ul>
+                <li><strong>Botón Play:</strong> Inicia la reproducción del video</li>
+                <li><strong>Botón Pause:</strong> Pausa el video actual</li>
+                <li><strong>Click en el video:</strong> También inicia la reproducción</li>
+                <li><strong>Indicador de tiempo reproducido:</strong> Muestra cuánto tiempo ha transcurrido</li>
+                <li><strong>Indicador de tiempo restante:</strong> Muestra cuánto falta para finalizar</li>
+            </ul>
+
+            <h2>🎨 Personalización</h2>
+
+            <p>Puedes personalizar el reproductor de varias formas:</p>
+
+            <h4>Estilos CSS</h4>
+            <p>Utiliza estas clases para aplicar estilos personalizados:</p>
+            <ul>
+                <li><span class="inline-code">.videoPlayer</span> - Contenedor principal</li>
+                <li><span class="inline-code">.play</span> - Botón de reproducción</li>
+                <li><span class="inline-code">.pause</span> - Botón de pausa</li>
+                <li><span class="inline-code">#demo</span> - Tiempo reproducido</li>
+                <li><span class="inline-code">#tiempoRestante</span> - Tiempo restante</li>
+            </ul>
+
+            <h4>Modificar tamaño del video</h4>
+            <p>En el código JavaScript, cambia la propiedad <span class="inline-code">width</span>:</p>
+            <pre><code>video.style.width = "500px"; // Cambia 300px por el tamaño deseado</code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Nota importante:</strong> Asegúrate de que las URLs de los videos sean accesibles públicamente y permitan la reproducción desde tu dominio (CORS).
+            </div>
+
+            <h2>📝 Parámetros de la Clase</h2>
+
+            <h4>Constructor VideoPlayer</h4>
+            <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                <thead style="background: #f8f9fa;">
+                    <tr>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Parámetro</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Tipo</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Por defecto</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #dee2e6;"><code>titulo</code></td>
+                        <td style="padding: 12px; border: 1px solid #dee2e6;">String</td>
+                        <td style="padding: 12px; border: 1px solid #dee2e6;">'mi-video'</td>
+                        <td style="padding: 12px; border: 1px solid #dee2e6;">Título del reproductor</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Método agregarVideo()</h4>
+            <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                <thead style="background: #f8f9fa;">
+                    <tr>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Parámetro</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Tipo</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Requerido</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #dee2e6;"><code>src</code></td>
+                        <td style="padding: 12px; border: 1px solid #dee2e6;">String</td>
+                        <td style="padding: 12px; border: 1px solid #dee2e6;">Sí</td>
+                        <td style="padding: 12px; border: 1px solid #dee2e6;">URL del video</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>🐛 Solución de Problemas</h2>
+
+            <h4>El video no se reproduce</h4>
+            <ul>
+                <li>Verifica que la URL del video sea correcta y accesible</li>
+                <li>Asegúrate de que el servidor permita CORS</li>
+                <li>Comprueba que el formato del video sea compatible</li>
+            </ul>
+
+            <h4>No veo el reproductor en la página</h4>
+            <ul>
+                <li>Verifica que el script esté correctamente enlazado</li>
+                <li>Abre la consola del navegador para ver posibles errores</li>
+                <li>Asegúrate de haber creado una instancia del VideoPlayer</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>💻 Creado por Lola</strong></p>
+            <p>Proyecto educativo para aprender JavaScript, manipulación del DOM y Pug</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">📚 Siéntete libre de modificar y mejorar este proyecto</p>
+        </footer>
+    </div>
+</body>
+</html>
