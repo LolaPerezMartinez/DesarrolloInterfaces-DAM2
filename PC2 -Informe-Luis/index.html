@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+<style>
+    /*Posibilidad de crear estilos para la impresion*/
+    @media print {
+      body {
+        color: blue;
+        font-size: 20pt;
+      }
+
+      button {
+        display: none;
+      }
+    }
+  </style>
+
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +27,7 @@
 <body>
 <nav>
 <button onclick="generarInforme()">Generar informe</button>
+<button id="guardar-pdf">Guardar como PDF</button>
 <button onclick="imprimir()">Guardar como PDF</button>
 </nav>
 
@@ -46,26 +61,26 @@
         Informe generado automáticamente a partir de datos simulados usando JavaScript.
       </p>
     </aside>
+    <!--etiqueta HTML especial para dibujar cosas
+        Es como un lienzo en blanco
+        La etiqueta canvas debe estar vacía para luego con new chart insertar lo que queremos-->
     <div class="cajagrafico"><canvas id="grafico"></canvas></div>
   </footer>
   
 </section>
 
+   <script>
+      function imprimir() {
+        window.print();
+      }
 
+      document
+        .getElementById("guardar-pdf")
+        .addEventListener("click", imprimir);
+    </script>
 
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-
-
-
-
-
-
-
-
-
     
 <script>
 /* const ctx = document.getElementById("grafico");
@@ -81,19 +96,35 @@ new Chart(ctx, {
   }
 }); */
 
+
+//Chart.js dibuja gráficos dentro de un canvas
+//new Chart(PRIMER_PARÁMETRO -> elemento canvas en HTML, 
+//          SEGUNDO_PARÁMETRO -> un objeto de configuración)
+
 new Chart(document.getElementById("grafico"), {
-  type: "bar",
+  //type: como se dibujan los datos
+  type: "bar", //barras verticales
+  //el tipo puede ser line(linea), pie(pastel) o doughnut(dona)
   data: {
+    //labels -> Datos del eje X
     labels: ["Matemáticas", "Lengua", "Historia", "Ciencias"],
+    //datasets es un array que representa varios datos
     datasets: [{
+      //label es el nombre de la serie de datos
       label: "Promedio por asignatura",
-      data: promedios,
+      //data Es un array con los valores numéricos que se van a dibujar
+      //Cada número corresponde a la etiqueta de labels del eje X
+      data: promedios,//array de script.js
     }]
   },
   options: {
+    //se adapta al contenedor
     responsive: true,
+    //proporción del gráfico.
     maintainAspectRatio: false,
     scales: {
+      //y comenzará en 0 e irá hasta 10
+      //La escala irá de 1 en 1
       y: {
         min: 0,
         max: 10,

@@ -11,6 +11,7 @@ async function generarInforme(){
   //  Acceso asíncrono al JSON
   const response = await fetch("/datos/calificaciones.json");
   const data = await response.json();
+  //extraemos la lista de alumnos
   const alumni = data.alumnado;
 
   const tbody = document.querySelector("#tabla");
@@ -24,7 +25,9 @@ async function generarInforme(){
   };
 
   for(const a of alumni){
+    //obtenemos un array de las notas
     const notas = Object.values(a.notas);
+    //media del alumno
     const promedioAlumnx =
       notas.reduce((acc,n)=>acc+n,0) / notas.length;
 
@@ -33,6 +36,7 @@ async function generarInforme(){
     sumAsignaturas.historia += a.notas.historia;
     sumAsignaturas.ciencias += a.notas.ciencias;
 
+    //inserta una fila en la tabla por cada alumno
     tbody.innerHTML += `
       <tr>
         <td>${a.nombre}</td>
@@ -51,8 +55,11 @@ async function generarInforme(){
 
   const totalAlumni = alumni.length;
 
+  //recorremos cada asignatura
   for(const asig in sumAsignaturas){
+    //promedio de esa asignatura
     const media = sumAsignaturas[asig] / totalAlumni;
+    //guarda el promedio en el array
     promedios.push(sumAsignaturas[asig] / totalAlumni);
 
     ul.innerHTML += `<li>${asig}: ${media.toFixed(2)}</li>`;
