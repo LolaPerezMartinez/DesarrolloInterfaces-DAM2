@@ -1,58 +1,35 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// Importar los componentes
-import Home from "./Paginas/Home";
-import Biblioteca from "./Paginas/Biblioteca";
-import Ayuda from "./Paginas/Ayuda";
+import MenuAbajo from './components/MenuAbajo';
+import Home from './components/Home';
+import Libros from './components/Biblioteca';
+import Ayuda from './components/Ayuda';
+import Descargas from './components/Descargas';
+
+const Estac = createNativeStackNavigator();
 
 export default function App() {
-  const [seccion, setSeccion] = useState("home"); // 'home', 'biblioteca', 'ayuda'
-
-  // Objeto de secciones para no usar switch
-  const secciones = {
-    home: <Home />,
-    biblioteca: <Biblioteca />,
-    ayuda: <Ayuda />,
-  };
-
   return (
-    <View style={{ flex: 1 }}>
-      {/* Sección activa */}
-      {secciones[seccion] || <Home />}
-
-      {/* Footer fijo */}
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerButton} onPress={() => setSeccion("home")}>
-          <Text style={styles.footerButtonText}>Inicio</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton} onPress={() => setSeccion("biblioteca")}>
-          <Text style={styles.footerButtonText}>Biblioteca</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton} onPress={() => setSeccion("ayuda")}>
-          <Text style={styles.footerButtonText}>Ayuda</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <NavigationContainer>
+      <Principal />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    height: 60,
-    backgroundColor: "#F63049",
-  },
-  footerButton: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  footerButtonText: {
-    color: "#FFF7CD",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-});
+function Principal() {
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <Estac.Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
+          <Estac.Screen name="Home" component={Home} />
+          <Estac.Screen name="Descargas" component={Descargas} />
+          <Estac.Screen name="Ayuda" component={Ayuda} />
+        </Estac.Navigator>
+      </View>
+
+      <MenuAbajo />
+    </View>
+  );
+}
